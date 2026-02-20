@@ -5,6 +5,11 @@ function validateLogin(e) {
   const errorEl = document.getElementById('clientError');
 
   errorEl.textContent = '';
+  //if the user provided some email/pwd
+  if (!email || !password){
+    errorEl.textContent = 'email and password are mandatory';
+    return false;
+  }
 
   return true;
 }

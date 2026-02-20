@@ -25,8 +25,9 @@ async function login(req, res) {
   // Password hashing check happens here. We compare the plain password to the stored hash.
   // IMPORTANT: We never log or store the plain password.
 
-  
-  if(password != staffUser.staffPassword){
+  const valid = await bcrypt.compare(password, staffUser.passwordHash);
+  console.log(staffUser);
+  if(!valid){
     return res.status(401).render('login', {
       error: 'Invalid credentials.',
       values: { email }
